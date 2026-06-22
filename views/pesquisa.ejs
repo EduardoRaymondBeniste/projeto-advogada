@@ -1,0 +1,85 @@
+<%- include('partials/header', { currentPage: 'pesquisa' }) %>
+<% if (typeof session !== 'undefined' && session && session.user) { %>
+    <p>Bem-vindo, <%= session.user.nome %></p>
+<% } else { %>
+    <p>Por favor, faça login.</p>
+<% } %>
+
+<!-- ===== PESQUISA ===== -->
+<section class="search-section">
+    <div class="container">
+        <div class="text-center mb-4" data-aos="fade-up">
+            <div class="hero-badge justify-content-center">
+                <span class="dot"></span>
+                Pesquisa Acadêmica
+            </div>
+            <h1 class="hero-title" style="font-size: 2.5rem;">
+                Busque <span class="highlight">Artigos Jurídicos</span>
+            </h1>
+            <p class="hero-subtitle mx-auto">
+                Encontre artigos, análises e conteúdos sobre Direito Tributário produzidos por nossa equipe.
+            </p>
+        </div>
+
+        <div class="search-box" data-aos="fade-up" data-aos-delay="100">
+            <form action="/pesquisa" method="GET">
+                <div class="input-group">
+                    <input type="text" name="q" class="form-control" placeholder="Pesquise por tema, palavra-chave, autor..." value="<%= query %>">
+                    <button class="btn btn-gold" type="submit">
+                        <i class="bi bi-search me-2"></i>Pesquisar
+                    </button>
+                </div>
+            </form>
+        </div>
+
+        <% if (query) { %>
+        <div class="text-center mb-4" data-aos="fade-up">
+            <p class="text-muted">
+                Resultados para: <strong class="text-gold"><%= query %></strong>
+                <span class="ms-2">(<%= artigos.length %> encontrado(s))</span>
+            </p>
+        </div>
+        <% } %>
+
+        <div class="row g-4">
+            <% if (artigos.length > 0) { %>
+                <% artigos.forEach(function(artigo) { %>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-premium">
+                        <div class="card-body">
+                            <span class="card-category"><%= artigo.categoria || 'Direito Tributário' %></span>
+                            <h5 class="card-title">
+                                <a href="/noticia/<%= artigo.id %>"><%= artigo.titulo %></a>
+                            </h5>
+                            <p class="card-text"><%= artigo.subtitulo ? artigo.subtitulo.substring(0, 100) + '...' : '' %></p>
+                            <div class="d-flex justify-content-between align-items-center mt-3">
+                                <small class="text-muted">
+                                    <i class="bi bi-calendar3 me-1"></i><%= artigo.data_formatada %>
+                                    <i class="bi bi-eye ms-2"></i><%= artigo.views || 0 %>
+                                </small>
+                                <a href="/noticia/<%= artigo.id %>" class="btn btn-sm btn-gold rounded-pill">
+                                    Ler <i class="bi bi-arrow-right ms-1"></i>
+                                </a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            <% } else if (query) { %>
+                <div class="col-12 text-center py-5" data-aos="fade-up">
+                    <div class="display-1 text-muted mb-3"><i class="bi bi-search"></i></div>
+                    <h4 class="text-white">Nenhum resultado encontrado</h4>
+                    <p class="text-muted">Tente outros termos de busca.</p>
+                </div>
+            <% } else { %>
+                <div class="col-12 text-center py-5" data-aos="fade-up">
+                    <div class="display-1 text-muted mb-3"><i class="bi bi-journal-richtext"></i></div>
+                    <h4 class="text-white">Faça uma pesquisa</h4>
+                    <p class="text-muted">Digite um termo acima para buscar artigos.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

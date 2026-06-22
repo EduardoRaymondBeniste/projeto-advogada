@@ -1,0 +1,66 @@
+<%- include('partials/header', { currentPage: 'noticia' }) %>
+
+<!-- ===== ARTIGO HEADER ===== -->
+<section class="artigo-header">
+    <div class="container">
+        <div class="artigo-back">
+            <a href="/" class="btn btn-sm btn-glass rounded-pill">
+                <i class="bi bi-arrow-left me-1"></i> Voltar
+            </a>
+        </div>
+        <span class="artigo-category"><%= artigo.categoria || 'Direito Tributário' %></span>
+        <h1><%= artigo.titulo %></h1>
+        <% if (artigo.subtitulo) { %>
+            <p class="text-secondary fs-5 mb-3"><%= artigo.subtitulo %></p>
+        <% } %>
+        <div class="artigo-meta">
+            <span><i class="bi bi-person"></i> <%= artigo.autor || 'Daniela Azevedo' %></span>
+            <span><i class="bi bi-calendar3"></i> <%= artigo.data_formatada %></span>
+            <span><i class="bi bi-eye"></i> <%= artigo.views || 0 %> visualizações</span>
+        </div>
+    </div>
+</section>
+
+<!-- ===== ARTIGO CONTEÚDO ===== -->
+<section class="artigo-content">
+    <div class="container">
+        <% if (artigo.imagem) { %>
+        <div class="text-center mb-4" data-aos="fade-up">
+            <img src="<%= artigo.imagem %>" class="artigo-image" alt="<%= artigo.titulo %>">
+        </div>
+        <% } %>
+
+        <div data-aos="fade-up">
+            <%- artigo.conteudo_html || artigo.conteudo %>
+        </div>
+
+        <!-- Tags -->
+        <% if (artigo.tags) { %>
+        <div class="mt-4 pt-3 border-top border-secondary" data-aos="fade-up">
+            <strong class="text-white me-2">Tags:</strong>
+            <% var tags = artigo.tags.split(','); %>
+            <% tags.forEach(function(tag) { %>
+                <a href="/pesquisa?q=<%= tag.trim() %>" class="badge bg-dark border border-secondary text-decoration-none me-1 mb-1">
+                    #<%= tag.trim() %>
+                </a>
+            <% }) %>
+        </div>
+        <% } %>
+
+        <!-- Compartilhar -->
+        <div class="d-flex align-items-center gap-2 mt-4 pt-3 border-top border-secondary" data-aos="fade-up">
+            <strong class="text-white me-2">Compartilhar:</strong>
+            <a href="https://wa.me/?text=<%= encodeURIComponent(artigo.titulo + ' - ' + 'https://danielaazevedo.adv.br/noticia/' + artigo.id) %>" target="_blank" class="btn btn-sm btn-glass rounded-circle" aria-label="WhatsApp">
+                <i class="bi bi-whatsapp"></i>
+            </a>
+            <a href="https://www.linkedin.com/sharing/share-offsite/?url=https://danielaazevedo.adv.br/noticia/<%= artigo.id %>" target="_blank" class="btn btn-sm btn-glass rounded-circle" aria-label="LinkedIn">
+                <i class="bi bi-linkedin"></i>
+            </a>
+            <a href="https://twitter.com/intent/tweet?text=<%= encodeURIComponent(artigo.titulo + ' - ' + 'https://danielaazevedo.adv.br/noticia/' + artigo.id) %>" target="_blank" class="btn btn-sm btn-glass rounded-circle" aria-label="Twitter">
+                <i class="bi bi-twitter-x"></i>
+            </a>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

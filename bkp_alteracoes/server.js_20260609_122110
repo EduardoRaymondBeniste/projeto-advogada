@@ -1,0 +1,67 @@
+const express = require('express');
+const session = require('express-session');
+const flash = require('connect-flash');
+const mysql = require('mysql2/promise');
+const path = require('path');
+const app = express();
+
+// Configuração do Banco
+const pool = mysql.createPool({ host: 'localhost', user: 'root', password: '', database: 'banco' });
+
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, 'public')));
+app.set('view engine', 'ejs');
+
+app.use(session({ secret: 'segredo', resave: false, saveUninitialized: false }));
+app.use(flash());
+
+// Middleware para variáveis globais (evita "session is not defined")
+app.use((req, res, next) => {
+    res.locals.session = req.session;
+    res.locals.success_msg = req.flash('success_msg');
+    res.locals.error_msg = req.flash('error_msg');
+    next();
+});
+
+// --- ROTAS GERAIS ---
+app.get('/', (req, res) => res.render('index', { title: 'Home' }));
+app.get('/sobre', (req, res) => res.render('sobre', { title: 'Sobre' }));
+app.get('/atuacao', (req, res) => res.render('atuacao', { title: 'Atuação' }));
+
+// --- LOGICA NEWSLETTER ---
+app.post('/newsletter', async (req, res) => {
+    try {
+        await pool.query("INSERT INTO newsletter (nome, email, ativo) VALUES (?, ?, ?)", ['Visitante', req.body.email, 1]);
+        req.flash('success_msg', 'Inscrito com sucesso!');
+        res.redirect('/');
+    } catch (e) { res.redirect('/'); }
+});
+
+// --- LOGICA LOGIN ADMIN ---
+app.get('/admin/login', (req, res) => res.render('admin/login', { title: 'Login' }));
+
+app.post('/admin/login', async (req, res) => {
+    try {
+        const [rows] = await pool.query("SELECT * FROM usuarios WHERE email = ? AND password = ?", [req.body.email, req.body.password]);
+        if (rows.length > 0) {
+            req.session.user = rows[0];
+            res.redirect('/admin/dashboard');
+        } else {
+            req.flash('error_msg', 'Dados inválidos');
+            res.redirect('/admin/login');
+        }
+    } catch (e) { res.redirect('/admin/login'); }
+});
+
+// --- LOGICA PAINEL E CONTATOS ---
+app.get('/admin/dashboard', (req, res) => {
+    if (!req.session.user) return res.redirect('/admin/login');
+    res.render('admin/dashboard', { title: 'Dashboard' });
+});
+
+app.get('/admin/contatos', async (req, res) => {
+    const [contatos] = await pool.query("SELECT * FROM contatos ORDER BY criado_em DESC");
+    res.render('admin/contatos', { contatos: contatos });
+});
+
+app.listen(process.env.PORT || 8080, '0.0.0.0', () => console.log('Servidor rodando em http://localhost:8080'));

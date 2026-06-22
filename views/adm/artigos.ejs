@@ -1,0 +1,68 @@
+<%- include('../partials/header') %>
+<div class="dashboard-page">
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col dashboard-welcome">
+                    <h4><i class="bi bi-newspaper text-gold me-2"></i>Gerenciar Artigos</h4>
+                </div>
+                <div class="col-auto d-flex gap-2">
+                    <a href="/admin/artigos/novo" class="btn btn-gold btn-sm rounded-pill">
+                        <i class="bi bi-plus-lg me-1" class="form-select text-dark"></i>Novo Artigo
+                    </a>
+                    <a href="/admin/dashboard" class="btn btn-glass btn-sm rounded-pill">
+                        <i class="bi bi-arrow-left me-1"></i>Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-4">
+        <div class="card-premium p-4" data-aos="fade-up">
+            <div class="table-responsive">
+                <table class="table table-premium mb-0">
+                    <thead>
+                        <tr>
+                            <th>Título</th>
+                            <th>Categoria</th>
+                            <th>Status</th>
+                            <th>Views</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <% artigos.forEach(function(a) { %>
+                        <tr>
+                            <td><strong class="text-white"><%= a.titulo.substring(0, 50) %><%= a.titulo.length > 50 ? '...' : '' %></strong></td>
+                            <td><%= a.categoria || '—' %></td>
+                            <td>
+                                <% if (a.status === 'publicado') { %>
+                                    <span class="badge bg-success">Publicado</span>
+                                <% } else { %>
+                                    <span class="badge bg-secondary">Rascunho</span>
+                                <% } %>
+                            </td>
+                            <td><%= a.views || 0 %></td>
+                            <td><%= a.criado_em %></td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <a href="/admin/artigos/editar/<%= a.id %>" class="btn btn-sm btn-glass" title="Editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <form action="/admin/artigos/excluir/<%= a.id %>" method="POST" data-confirm="Excluir este artigo?" style="display:inline">
+                                        <button type="submit" class="btn btn-sm btn-glass" title="Excluir" style="color:var(--accent)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

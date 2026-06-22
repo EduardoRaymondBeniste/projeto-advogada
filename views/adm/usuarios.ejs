@@ -1,0 +1,58 @@
+<%- include('../partials/header') %>
+<div class="dashboard-page">
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col dashboard-welcome">
+                    <h4><i class="bi bi-people text-gold me-2"></i>Gerenciar Usuários</h4>
+                </div>
+                <div class="col-auto">
+                    <a href="/admin/dashboard" class="btn btn-glass btn-sm rounded-pill">
+                        <i class="bi bi-arrow-left me-1"></i>Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-4">
+        <div class="card-premium p-4" data-aos="fade-up">
+            <div class="table-responsive">
+                <table class="table table-premium mb-0">
+                    <thead>
+                        <tr><th>ID</th><th>Nome</th><th>Login</th><th>Admin</th><th>Data</th><th>Ações</th></tr>
+                    </thead>
+                    <tbody>
+                        <% usuarios.forEach(function(u) { %>
+                        <tr>
+                            <td><%= u.id %></td>
+                            <td><%= u.nome %></td>
+                            <td><%= u.login %></td>
+                            <td>
+                                <% if (u.is_admin) { %>
+                                    <span class="badge bg-gold">Admin</span>
+                                <% } else { %>
+                                    <span class="badge bg-secondary">Editor</span>
+                                <% } %>
+                            </td>
+                            <td><small><%= u.criado_em %></small></td>
+                            <td>
+                                <div class="d-flex gap-1">
+                                    <a href="/admin/usuarios/editar/<%= u.id %>" class="btn btn-sm btn-glass" title="Editar">
+                                        <i class="bi bi-pencil"></i>
+                                    </a>
+                                    <form action="/admin/usuarios/excluir/<%= u.id %>" method="POST" data-confirm="Excluir usuário?" style="display:inline">
+                                        <button type="submit" class="btn btn-sm btn-glass" style="color:var(--accent)">
+                                            <i class="bi bi-trash"></i>
+                                        </button>
+                                    </form>
+                                </div>
+                            </td>
+                        </tr>
+                        <% }) %>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

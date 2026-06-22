@@ -1,0 +1,80 @@
+<%- include('../partials/header') %>
+<div class="dashboard-page">
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col dashboard-welcome">
+                    <h4><i class="bi bi-pencil-square text-gold me-2"></i><%= artigo ? 'Editar' : 'Novo' %> Artigo</h4>
+                </div>
+                <div class="col-auto">
+                    <a href="/admin/artigos" class="btn btn-glass btn-sm rounded-pill">
+                        <i class="bi bi-arrow-left me-1"></i>Voltar
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="container py-4">
+        <div class="card-premium p-4 p-md-5" data-aos="fade-up">
+            <form action="/admin/artigos<%= artigo ? '/editar/' + artigo.id : '/novo' %>" method="POST" enctype="application/x-www-form-urlencoded">
+                <div class="row g-3">
+                    <div class="mb-3">
+    <label class="form-label text-white">Título *</label>
+    <input type="text" name="titulo" class="form-control bg-white text-dark" value="<%= artigo ? artigo.titulo : '' %>">
+</div>
+<div class="mb-3">
+    <label class="form-label text-white">Subtítulo</label>
+    <input type="text" name="subtitulo" class="form-control bg-white text-dark" value="<%= artigo ? artigo.subtitulo : '' %>">
+</div>
+                    
+                    <div class="mb-3">
+    <label class="form-label text-white">Categoria</label>
+    <select name="categoria" class="form-select bg-white text-dark">
+        <option value="Direito Tributário" <%= artigo && artigo.categoria === 'Direito Tributário' ? 'selected' : '' %>>Direito Tributário</option>
+        <option value="Planejamento Fiscal" <%= artigo && artigo.categoria === 'Planejamento Fiscal' ? 'selected' : '' %>>Planejamento Fiscal</option>
+        <option value="Contencioso" <%= artigo && artigo.categoria === 'Contencioso' ? 'selected' : '' %>>Contencioso</option>
+        <option value="Reforma Tributária" <%= artigo && artigo.categoria === 'Reforma Tributária' ? 'selected' : '' %>>Reforma Tributária</option>
+        <option value="Direito Empresarial" <%= artigo && artigo.categoria === 'Direito Empresarial' ? 'selected' : '' %>>Direito Empresarial</option>
+    </select>
+</div>
+                    <div class="mb-3">
+    <label class="form-label text-white">Status</label>
+    <select name="status" class="form-select bg-white text-dark">
+        <option value="Rascunho" <%= artigo && artigo.status === 'Rascunho' ? 'selected' : '' %>>Rascunho</option>
+        <option value="Publicado" <%= artigo && artigo.status === 'Publicado' ? 'selected' : '' %>>Publicado</option>
+    </select>
+</div>
+                   <div class="mb-3">
+    <label class="form-label text-white">Destaque</label>
+    <select name="destaque" class="form-select bg-white text-dark">
+        <option value="Não" <%= artigo && artigo.destaque === 'Não' ? 'selected' : '' %>>Não</option>
+        <option value="Sim" <%= artigo && artigo.destaque === 'Sim' ? 'selected' : '' %>>Sim</option>
+    </select>
+</div>
+                    <div class="col-12">
+                        <label class="form-label">Conteúdo (HTML permitido) *</label>
+                        <textarea name="conteudo" class="form-control" rows="15" required><%= artigo ? artigo.conteudo : '' %></textarea>
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Autor</label>
+                        <input type="text" name="autor" class="form-control" value="<%= artigo ? artigo.autor : 'Daniela Azevedo' %>">
+                    </div>
+                    <div class="col-md-6">
+                        <label class="form-label">Tags (separadas por vírgula)</label>
+                        <input type="text" name="tags" class="form-control" value="<%= artigo ? artigo.tags : '' %>" placeholder="ex: reforma tributária, planejamento fiscal">
+                    </div>
+                    <div class="col-12">
+                        <label class="form-label">URL da Imagem</label>
+                        <input type="url" name="imagem" class="form-control" value="<%= artigo ? artigo.imagem : '' %>" placeholder="https://exemplo.com/imagem.jpg">
+                    </div>
+                    <div class="col-12">
+                        <button type="submit" class="btn btn-gold px-5 py-3">
+                            <i class="bi bi-check-lg me-2"></i><%= artigo ? 'Atualizar' : 'Publicar' %> Artigo
+                        </button>
+                    </div>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

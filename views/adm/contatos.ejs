@@ -1,0 +1,19 @@
+<%- include('../partials/header') %>
+<div class="dashboard-page">
+    <div class="dashboard-header"><div class="container"><div class="row align-items-center"><div class="col dashboard-welcome"><h4><i class="bi bi-envelope text-gold me-2"></i>Contatos Recebidos</h4></div><div class="col-auto"><a href="/admin/dashboard" class="btn btn-glass btn-sm rounded-pill"><i class="bi bi-arrow-left me-1"></i>Voltar</a></div></div></div></div>
+    <div class="container py-4"><div class="card-premium p-4" data-aos="fade-up"><div class="table-responsive">
+        <table class="table table-premium mb-0"><thead><tr><th>Nome</th><th>E-mail</th><th>Assunto</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody><% contatos.forEach(function(c) { %>
+                <tr class="bg-white text-dark">
+                    <td><strong><%= c.nome %></strong></td><td><%= c.email %></td><td><%= c.assunto || '—' %></td><td><small><%= c.criado_em %></small></td>
+                    <td><% if (!c.lido) { %><span class="badge bg-warning text-dark">Pendente</span><% } else { %><span class="badge bg-success">Lido</span><% } %></td>
+                    <td><div class="d-flex gap-1">
+                        <button class="btn btn-sm btn-glass mark-read-btn" data-id="<%= c.id %>" <%= c.lido ? 'disabled' : '' %>><i class="bi bi-check-lg"></i></button>
+                        <a href="mailto:<%= c.email %>" class="btn btn-sm btn-glass" title="Responder"><i class="bi bi-reply"></i></a>
+                        <form action="/admin/contatos/excluir/<%= c.id %>" method="POST" data-confirm="Excluir este contato?" style="display:inline"><button type="submit" class="btn btn-sm btn-glass" style="color:var(--accent)"><i class="bi bi-trash"></i></button></form>
+                    </div></td>
+                </tr><% }) %>
+            </tbody></table>
+    </div></div></div>
+</div>
+<%- include('../partials/footer') %>

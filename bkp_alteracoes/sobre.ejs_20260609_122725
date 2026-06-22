@@ -1,0 +1,114 @@
+<%- include('partials/header', { currentPage: 'sobre' }) %>
+
+<!-- ===== SOBRE HERO ===== -->
+<section class="hero-section" style="min-height: 50vh; padding: 140px 0 60px;">
+    <div class="container position-relative z-1">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="sobre-image-frame">
+                    <div class="inner">
+                        <span class="initials">DA</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Formanda em Direito - 2026
+                </div>
+                <h1 class="hero-title" style="font-size: 2.8rem;">
+                    Daniela Azevedo<br>
+                    <span class="highlight">Advogada Autônoma</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Em formação pela Faculdade de Direito de São Paulo, Daniela Azevedo é uma 
+                    jovem advogada dedicada ao Direito Tributário, que está se formando em 2025. 
+                    Atua de forma autônoma, combinando excelência acadêmica com paixão pela justiça fiscal.
+                </p>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== MISSÃO, VISÃO E VALORES ===== -->
+<section class="section-padding bg-dark-surface">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Missão, Visão e Valores</h2>
+            <p class="section-subtitle">Os pilares que guiam nossa atuação no Direito Tributário</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="mission-card">
+                    <div class="icon"><i class="bi bi-bullseye"></i></div>
+                    <h5>Missão</h5>
+                    <p>Oferecer assessoria jurídica tributária de excelência, com ética e responsabilidade, 
+                    auxiliando clientes a compreender e otimizar suas obrigações fiscais dentro da legalidade.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="200">
+                <div class="mission-card">
+                    <div class="icon"><i class="bi bi-eye"></i></div>
+                    <h5>Visão</h5>
+                    <p>Ser referência em Direito Tributário no Brasil, reconhecida pela excelência técnica, 
+                    inovação e compromisso com a justiça fiscal e o desenvolvimento sustentável.</p>
+                </div>
+            </div>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="300">
+                <div class="mission-card">
+                    <div class="icon"><i class="bi bi-heart"></i></div>
+                    <h5>Valores</h5>
+                    <p>Ética, transparência, compromisso com o cliente, atualização constante, 
+                    responsabilidade social e dedicação à causa da justiça tributária.</p>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== HISTÓRIA ===== -->
+<section class="section-padding">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-8" data-aos="fade-up">
+                <div class="text-center mb-5">
+                    <div class="section-divider"></div>
+                    <h2 class="section-title">Nossa História</h2>
+                </div>
+                <div class="card-premium p-4 p-md-5">
+                    <p class="mb-4">
+                        <i class="bi bi-quote display-6 text-gold opacity-50"></i>
+                    </p>
+                    <p class="mb-3" style="font-size: 1.1rem; line-height: 1.8;">
+                        <strong class="text-white">Daniela Azevedo</strong> é uma advogada tributarista que está 
+                        concluindo seu curso de Direito em 2026. Desde o início de sua jornada acadêmica, 
+                        demonstrou grande interesse pelo Direito Tributário, área que considera fundamental para 
+                        o desenvolvimento econômico e social do país.
+                    </p>
+                    <p class="mb-3" style="font-size: 1.1rem; line-height: 1.8;">
+                        Durante sua graduação, participou de projetos de pesquisa científica, grupos de estudo 
+                        e eventos acadêmicos focados em temas como reforma tributária, planejamento fiscal e 
+                        direitos do contribuinte. Essa dedicação a preparou para oferecer um serviço jurídico 
+                        de qualidade, baseado em conhecimento técnico atualizado e visão crítica do sistema tributário.
+                    </p>
+                    <p style="font-size: 1.1rem; line-height: 1.8;">
+                        Hoje, <strong class="text-white">Daniela atua de forma autônoma e independente</strong>, 
+                        prestando consultoria jurídica tributária personalizada, auxiliando empresas 
+                        e pessoas físicas a navegarem pelo complexo sistema tributário brasileiro com segurança 
+                        e eficiência. Cada cliente recebe atendimento direto e dedicado da própria Daniela.
+                    </p>
+                    <div class="sobre-badge-list mt-4">
+                        <span class="badge"><i class="bi bi-check me-1"></i>Atendimento Autônomo</span>
+                        <span class="badge"><i class="bi bi-check me-1"></i>Direito Tributário</span>
+                        <span class="badge"><i class="bi bi-check me-1"></i>Planejamento Fiscal</span>
+                        <span class="badge"><i class="bi bi-check me-1"></i>Contencioso</span>
+                        <span class="badge"><i class="bi bi-check me-1"></i>Consultoria Personalizada</span>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

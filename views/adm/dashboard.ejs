@@ -1,0 +1,105 @@
+<%- include('../partials/header') %>
+<% if (typeof session !== 'undefined' && session && session.user) { %>
+    <p>Bem-vindo, <%= session.user.nome %></p>
+<% } else { %>
+    <p>Por favor, faça login.</p>
+<% } %>
+<div class="dashboard-page">
+    <div class="dashboard-header">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col dashboard-welcome">
+                    <h4><i class="bi bi-speedometer2 text-gold me-2"></i>Dashboard</h4>
+                    <small>Bem-vindo(a), <strong class="text-gold"><%= session.user.nome %></strong></small>
+                </div>
+                <div class="col-auto d-flex gap-2">
+                    <a href="/admin/artigos/novo" class="btn btn-gold btn-sm rounded-pill">
+                        <i class="bi bi-plus-lg me-1"></i>Novo Artigo
+                    </a>
+                    <a href="/admin/logout" class="btn btn-glass btn-sm rounded-pill">
+                        <i class="bi bi-box-arrow-right me-1"></i>Sair
+                    </a>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="container py-4">
+        <div class="row g-4 mb-4">
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="stat-card">
+                    <div class="stat-icon gold"><i class="bi bi-newspaper"></i></div>
+                    <div class="stat-number"><%= stats.artigos %></div>
+                    <div class="stat-label">Artigos</div>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="150">
+                <div class="stat-card">
+                    <div class="stat-icon blue"><i class="bi bi-envelope"></i></div>
+                    <div class="stat-number"><%= stats.contatos %></div>
+                    <div class="stat-label">Contatos</div>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="stat-card">
+                    <div class="stat-icon green"><i class="bi bi-person-check"></i></div>
+                    <div class="stat-number"><%= stats.consultorias %></div>
+                    <div class="stat-label">Consultorias</div>
+                </div>
+            </div>
+            <div class="col-md-3" data-aos="fade-up" data-aos-delay="250">
+                <div class="stat-card">
+                    <div class="stat-icon red"><i class="bi bi-envelope-paper"></i></div>
+                    <div class="stat-number"><%= stats.newsletter %></div>
+                    <div class="stat-label">Inscritos</div>
+                </div>
+            </div>
+        </div>
+
+        <div class="row g-4">
+            <div class="col-md-8">
+                <div class="card-premium p-4" data-aos="fade-up">
+                    <h5 class="text-white mb-3"><i class="bi bi-clock-history text-gold me-2"></i>Últimos Contatos</h5>
+                    <% if (ultimosContatos.length > 0) { %>
+                        <div class="table-responsive">
+                            <table class="table table-premium mb-0">
+                                <thead>
+                                    <tr><th>Nome</th><th>Assunto</th><th>Data</th><th></th></tr>
+                                </thead>
+                                <tbody>
+                                    <% ultimosContatos.forEach(function(c) { %>
+                                    <tr>
+                                        <td><%= c.nome %></td>
+                                        <td><%= c.assunto || '—' %></td>
+                                        <td><%= c.criado_em %></td>
+                                        <td>
+                                            <% if (!c.lido) { %>
+                                                <span class="badge bg-warning text-dark">Novo</span>
+                                            <% } %>
+                                        </td>
+                                    </tr>
+                                    <% }) %>
+                                </tbody>
+                            </table>
+                        </div>
+                    <% } else { %>
+                        <p class="text-muted mb-0">Nenhum contato recebido.</p>
+                    <% } %>
+                </div>
+            </div>
+            <div class="col-md-4">
+                <div class="card-premium p-4" data-aos="fade-up" data-aos-delay="100">
+                    <h5 class="text-white mb-3"><i class="bi bi-gear text-gold me-2"></i>Menu Rápido</h5>
+                    <div class="d-grid gap-2">
+                        <a href="/admin/artigos" class="btn btn-glass"><i class="bi bi-newspaper me-2"></i>Artigos</a>
+                        <a href="/admin/contatos" class="btn btn-glass"><i class="bi bi-envelope me-2"></i>Contatos</a>
+                        <a href="/admin/consultorias" class="btn btn-glass"><i class="bi bi-calendar-check me-2"></i>Consultorias</a>
+                        <a href="/admin/newsletter" class="btn btn-glass"><i class="bi bi-envelope-paper me-2"></i>Newsletter</a>
+                        <a href="/admin/usuarios" class="btn btn-glass"><i class="bi bi-people me-2"></i>Usuários</a>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<%- include('../partials/footer') %>

@@ -1,0 +1,100 @@
+<%- include('partials/header', { currentPage: 'consultoria' }) %>
+
+<!-- ===== CONSULTORIA ===== -->
+<section class="consultoria-section">
+    <div class="container">
+        <div class="row g-5 align-items-start">
+            <div class="col-lg-6" data-aos="fade-right">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Agende sua Consultoria
+                </div>
+                <h1 class="hero-title" style="font-size: 2.5rem;">
+                    Vamos Conversar<br>
+                    <span class="highlight">Sobre seu Caso</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Preencha o formulário e agende uma consultoria personalizada. 
+                    Analisaremos seu caso com a dedicação que você merece.
+                </p>
+
+                <div class="contact-info-card d-flex align-items-center gap-3">
+                    <div class="icon"><i class="bi bi-telephone"></i></div>
+                    <div>
+                        <h6>Telefone</h6>
+                        <p>(11) 99999-8888</p>
+                    </div>
+                </div>
+                <div class="contact-info-card d-flex align-items-center gap-3">
+                    <div class="icon"><i class="bi bi-envelope"></i></div>
+                    <div>
+                        <h6>E-mail</h6>
+                        <p>contato@danielaazevedo.adv.br</p>
+                    </div>
+                </div>
+                <div class="contact-info-card d-flex align-items-center gap-3">
+                    <div class="icon"><i class="bi bi-geo-alt"></i></div>
+                    <div>
+                        <h6>Endereço</h6>
+                        <p>São Paulo - SP</p>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-delay="200">
+                <div class="card-premium p-4 p-md-5">
+                    <h4 class="text-white mb-4"><i class="bi bi-pencil-square text-gold me-2"></i>Solicitar Consultoria</h4>
+                  <form action="/consultoria" method="POST" class="row g-3">
+    <div class="col-12">
+        <label class="form-label">Nome completo *</label>
+        <input type="text" name="nome" class="form-control" placeholder="Seu nome" required>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">E-mail *</label>
+        <input type="email" name="email" class="form-control" placeholder="seu@email.com" required>
+    </div>
+
+    <div class="col-md-6">
+        <label class="form-label">Telefone</label>
+        <input type="tel" name="telefone" class="form-control" placeholder="(11) 99999-8888">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Tipo de Consulta</label>
+        <select name="tipo_consulta" class="form-select">
+            <option value="Consultoria Jurídica">Consultoria Jurídica</option>
+        </select>
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Data sugerida</label>
+        <input type="date" name="data_sugerida" class="form-control">
+    </div>
+
+    <div class="col-md-4">
+        <label class="form-label">Horário</label>
+        <input type="time" name="horario_sugerido" class="form-control">
+    </div>
+
+    <div class="col-12">
+        <label class="form-label">Descrição do caso</label>
+        <textarea name="descricao" class="form-control" rows="4" placeholder="Descreva brevemente sua situação ou dúvida jurídica..."></textarea>
+    </div>
+
+    <div class="col-12">
+        <button type="submit" class="btn btn-warning w-100 py-3">Solicitar Consultoria</button>
+    </div>
+</form>
+                </div>
+            </div>
+        </div>
+    </div>
+    <% if (success_msg && success_msg.length > 0) { %>
+    <div class="alert alert-success"><%= success_msg %></div>
+<% } %>
+<% if (error_msg && error_msg.length > 0) { %>
+    <div class="alert alert-danger"><%= error_msg %></div>
+<% } %>
+</section>
+
+<%- include('partials/footer') %>

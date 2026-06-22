@@ -1,0 +1,85 @@
+<%- include('partials/header', { currentPage: 'faleconosco' }) %>
+
+<!-- ===== FALE CONOSCO ===== -->
+<section class="contact-section">
+    <div class="container">
+        <div class="row g-5">
+            <div class="col-lg-5" data-aos="fade-right">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Fale Conosco
+                </div>
+                <h1 class="hero-title" style="font-size: 2.2rem;">
+                    Entre em<br>
+                    <span class="highlight">Contato</span>
+                </h1>
+                <p class="hero-subtitle">
+                    Estamos prontos para ouvir você. Envie sua mensagem e retornaremos 
+                    o mais breve possível.
+                </p>
+                <div class="contact-info-card d-flex align-items-center gap-3">
+                    <div class="icon"><i class="bi bi-telephone"></i></div>
+                    <div><h6>Telefone / WhatsApp</h6><p>(21) 99720-21369</p></div>
+                </div>
+                <div class="contact-info-card d-flex align-items-center gap-3">
+                    <div class="icon"><i class="bi bi-envelope"></i></div>
+                    <div><h6>E-mail</h6><p>contato@danielaazevedo.adv.br</p></div>
+                </div>
+                <div class="contact-info-card d-flex align-items-center gap-3">
+                    <div class="icon"><i class="bi bi-geo-alt"></i></div>
+                    <div><h6>Endereço</h6><p>Rua Jose Linhares 23/201</p></div>
+                </div>
+                <div class="contact-info-card d-flex align-items-center gap-3">
+                    <div class="icon"><i class="bi bi-clock"></i></div>
+                    <div><h6>Horário de Atendimento</h6><p>Seg a Sex: 09h - 18h</p></div>
+                </div>
+            </div>
+            <div class="col-lg-7" data-aos="fade-left" data-aos-delay="200">
+                <div class="card-premium p-4 p-md-5">
+                    <h4 class="text-white mb-4"><i class="bi bi-chat-dots text-gold me-2"></i>Envie sua Mensagem</h4>
+                    <form action="/faleconosco" method="POST">
+                        <div class="row g-3">
+                            <div class="col-md-6">
+                                <label class="form-label">Nome *</label>
+                                <input type="text" name="nome" class="form-control" placeholder="Seu nome completo" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">E-mail *</label>
+                                <input type="email" name="email" class="form-control" placeholder="seu@email.com" required>
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Telefone</label>
+                                <input type="tel" name="telefone" class="form-control" placeholder="(11) 99999-8888">
+                            </div>
+                            <div class="col-md-6">
+                                <label class="form-label">Assunto</label>
+                                <select name="assunto" class="form-select bg-white text-dark">
+                                    <option value="">Selecione um assunto...</option>
+                                    <option value="Planejamento Tributário">Planejamento Tributário</option>
+                                    <option value="Contencioso Fiscal">Contencioso Fiscal</option>
+                                    <option value="Consultoria Jurídica">Consultoria Jurídica</option>
+                                    <option value="Recuperação de Créditos">Recuperação de Créditos</option>
+                                    <option value="Compliance Fiscal">Compliance Fiscal</option>
+                                    <option value="Agendamento">Agendamento de Reunião</option>
+                                    <option value="Sugestão">Sugestão</option>
+                                    <option value="Outro">Outro</option>
+                                </select>
+                            </div>
+                            <div class="col-12">
+                                <label class="form-label">Mensagem *</label>
+                                <textarea name="mensagem" class="form-control" rows="5" placeholder="Digite sua mensagem..." required></textarea>
+                            </div>
+                            <div class="col-12">
+                                <button type="submit" class="btn btn-gold w-100 py-3">
+                                    <i class="bi bi-send-fill me-2"></i>Enviar Mensagem
+                                </button>
+                            </div>
+                        </div>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+<%- include('partials/footer') %>
+Copiar

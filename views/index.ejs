@@ -1,0 +1,229 @@
+<%- include('partials/header', { currentPage: 'home' }) %>
+
+<!-- ===== HERO SECTION ===== -->
+<section class="hero-section" id="home">
+    <div class="hero-particles">
+        <% for(let i = 0; i < 20; i++) { %>
+            <div class="hero-particle" style="left: <%= Math.random() * 100 %>%; animation-delay: <%= Math.random() * 20 %>s; animation-duration: <%= 15 + Math.random() * 15 %>s;"></div>
+        <% } %>
+    </div>
+    <div class="container position-relative z-1">
+        <div class="row align-items-center g-5">
+            <div class="col-lg-6" data-aos="fade-right" data-aos-duration="1000">
+                <div class="hero-badge">
+                    <span class="dot"></span>
+                    Advocacia Especializada
+                </div>
+                <h1 class="hero-title">
+                    Direito Tributário<br>
+                    <span class="highlight">Soluções Jurídicas</span><br>
+                    com Excelência
+                </h1>
+                <p class="hero-subtitle">
+                    Daniela Azevedo oferece assessoria jurídica personalizada em Direito Tributário, 
+                    com atendimento direto e dedicado. Em formação (2026), combina conhecimento acadêmico 
+                    atualizado com paixão pela justiça fiscal para proteger seus direitos e otimizar 
+                    sua carga tributária.
+                </p>
+                <div class="d-flex flex-wrap gap-3">
+                    <a href="/consultoria" class="btn btn-gold btn-lg rounded-pill px-4">
+                        <i class="bi bi-calendar-check me-2"></i>Agende uma Consultoria
+                    </a>
+                    <a href="/#noticias" class="btn btn-glass btn-lg rounded-pill px-4">
+                        <i class="bi bi-newspaper me-2"></i>Últimas Notícias
+                    </a>
+                </div>
+                <div class="hero-stats">
+                    <div>
+                        <span class="hero-stat-number"><%= typeof artigos !== 'undefined' ? artigos.length : '0' %></span>
+                        <span class="hero-stat-label">Artigos</span>
+                    </div>
+                    <div>
+                        <span class="hero-stat-number">100%</span>
+                        <span class="hero-stat-label">Dedicação</span>
+                    </div>
+                    <div>
+                        <span class="hero-stat-number">2026</span>
+                        <span class="hero-stat-label">Formação</span>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6" data-aos="fade-left" data-aos-duration="1000" data-aos-delay="200">
+                <div class="hero-image-wrapper">
+                    <div class="hero-glow"></div>
+                    <div class="hero-image-frame">
+                        <div class="inner">
+                            <span class="initials">DA</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+<!-- ===== SEÇÃO DE ATUAÇÃO (Cards Rápidos) ===== -->
+<section class="section-padding bg-dark-surface" id="atuacao-rapida">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Áreas de Atuação</h2>
+            <p class="section-subtitle">Soluções completas em Direito Tributário para empresas e pessoas físicas</p>
+        </div>
+        <div class="row g-4">
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="100">
+                <div class="atuacao-card">
+                    <div class="icon"><i class="bi bi-graph-up-arrow"></i></div>
+                    <h5>Planejamento Tributário</h5>
+                    <p>Estratégias legais para redução de impostos e otimização fiscal empresarial.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="200">
+                <div class="atuacao-card">
+                    <div class="icon"><i class="bi bi-shield-shaded"></i></div>
+                    <h5>Contencioso Fiscal</h5>
+                    <p>Defesa administrativa e judicial em processos fiscais e execuções fiscais.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="300">
+                <div class="atuacao-card">
+                    <div class="icon"><i class="bi bi-file-text"></i></div>
+                    <h5>Consultoria Jurídica</h5>
+                    <p>Assessoria preventiva em matéria tributária para tomada de decisões.</p>
+                </div>
+            </div>
+            <div class="col-md-6 col-lg-3" data-aos="fade-up" data-aos-delay="400">
+                <div class="atuacao-card">
+                    <div class="icon"><i class="bi bi-journal-bookmark-fill"></i></div>
+                    <h5>Pesquisa Acadêmica</h5>
+                    <p>Artigos científicos e estudos aprofundados em Direito Tributário.</p>
+                </div>
+            </div>
+        </div>
+        <div class="text-center mt-4" data-aos="fade-up">
+            <a href="/atuacao" class="btn btn-gold-outline rounded-pill px-4">
+                <i class="bi bi-arrow-right me-2"></i>Ver Todas as Áreas
+            </a>
+        </div>
+    </div>
+</section>
+
+<!-- ===== PORTAL DE NOTÍCIAS ===== -->
+<section class="section-padding" id="noticias">
+    <div class="container">
+        <div class="text-center mb-5" data-aos="fade-up">
+            <div class="section-divider"></div>
+            <h2 class="section-title">Portal de Notícias</h2>
+            <p class="section-subtitle">Artigos científicos e conteúdos atualizados sobre Direito Tributário</p>
+        </div>
+
+        <!-- Artigos em Destaque -->
+        <% if (typeof destaques !== 'undefined' && destaques.length > 0) { %>
+        <div class="row g-4 mb-5">
+            <div class="col-12" data-aos="fade-up">
+                <h5 class="text-gold mb-3"><i class="bi bi-star-fill me-2"></i>Artigos em Destaque</h5>
+            </div>
+            <% destaques.forEach(function(artigo) { %>
+            <div class="col-md-4" data-aos="fade-up" data-aos-delay="100">
+                <div class="card-destaque">
+                    <div class="card-img-top bg-dark d-flex align-items-center justify-content-center">
+                        <% if (artigo.imagem) { %>
+                            <img src="<%= artigo.imagem %>" class="w-100 h-100" style="object-fit:cover" alt="<%= artigo.titulo %>">
+                        <% } else { %>
+                            <div class="img-placeholder"><i class="bi bi-journal-richtext"></i></div>
+                        <% } %>
+                    </div>
+                    <div class="card-body">
+                        <span class="card-category">Destaque</span>
+                        <h5 class="card-title">
+                            <a href="/noticia/<%= artigo.id %>"><%= artigo.titulo %></a>
+                        </h5>
+                        <p class="card-text"><%= artigo.subtitulo ? artigo.subtitulo.substring(0, 120) + '...' : '' %></p>
+                        <div class="d-flex justify-content-between align-items-center">
+                            <small class="text-white"><i class="bi bi-calendar3 me-1"></i><%= artigo.criado_em %></small>
+                            <a href="/noticia/<%= artigo.id %>" class="btn btn-sm btn-gold rounded-pill px-3">Ler Mais</a>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <% }) %>
+        </div>
+        <% } %>
+
+        <!-- Grid de Artigos -->
+        <div class="row g-4">
+            <% if (typeof artigos !== 'undefined' && artigos.length > 0) { %>
+                <% artigos.forEach(function(artigo) { %>
+                <div class="col-md-6 col-lg-4" data-aos="fade-up" data-aos-delay="100">
+                    <div class="card-premium">
+                        <div class="card-img-top bg-dark d-flex align-items-center justify-content-center">
+                            <% if (artigo.imagem) { %>
+                                <img src="<%= artigo.imagem %>" class="w-100 h-100" style="object-fit:cover" alt="<%= artigo.titulo %>">
+                            <% } else { %>
+                                <div class="img-placeholder"><i class="bi bi-file-text"></i></div>
+                            <% } %>
+                        </div>
+                        <div class="card-body">
+                            <span class="card-category"><%= artigo.categoria || 'Direito Tributário' %></span>
+                            <h5 class="card-title">
+                                <a href="/noticia/<%= artigo.id %>"><%= artigo.titulo %></a>
+                            </h5>
+                            <p class="card-text"><%= artigo.subtitulo ? artigo.subtitulo.substring(0, 100) + '...' : 'Leia o artigo completo sobre Direito Tributário.' %></p>
+                            <div class="d-flex flex-wrap gap-2 mb-2">
+                                <% if (artigo.tags) { %>
+                                    <% var tags = artigo.tags.split(',').slice(0, 3); %>
+                                    <% tags.forEach(function(tag) { %>
+                                        <span class="badge bg-dark border border-secondary">#<%= tag.trim() %></span>
+                                    <% }) %>
+                                <% } %>
+                            </div>
+                        </div>
+                        <div class="card-footer">
+                            <span class="card-date">
+                                <i class="bi bi-calendar3"></i> <%= artigo.data_formatada %>
+                                <i class="bi bi-eye ms-2"></i> <%= artigo.views || 0 %>
+                            </span>
+                            <a href="/noticia/<%= artigo.id %>" class="btn btn-sm btn-gold rounded-pill">
+                                Ler Mais <i class="bi bi-arrow-right ms-1"></i>
+                            </a>
+                        </div>
+                    </div>
+                </div>
+                <% }) %>
+            <% } else { %>
+                <!-- Artigos Placeholder -->
+                <div class="col-12 text-center py-5" data-aos="fade-up">
+                    <div class="display-1 text-muted mb-3"><i class="bi bi-newspaper"></i></div>
+                    <h4 class="text-white">Nenhum artigo publicado ainda</h4>
+                    <p class="text-muted">Em breve publicaremos conteúdos sobre Direito Tributário.</p>
+                </div>
+            <% } %>
+        </div>
+    </div>
+</section>
+
+<!-- ===== NEWSLETTER ===== -->
+<section class="newsletter-section" id="newsletter">
+    <div class="container">
+        <div class="row justify-content-center">
+            <div class="col-lg-6 text-center" data-aos="fade-up">
+                <div class="display-5 text-gold mb-3"><i class="bi bi-envelope-paper"></i></div>
+                <h3 class="text-white mb-2">Fique por dentro</h3>
+              <p class="text-gold mb-4">
+    Receba nossos artigos e novidades sobre Direito Tributário diretamente no seu e-mail.
+</p>
+                <form id="newsletterForm" class="newsletter-form" action="/newsletter" method="POST">
+                    <div class="input-group">
+                        <input type="email" name="email" class="form-control" placeholder="Digite seu melhor e-mail" required>
+                        <button class="btn btn-gold" type="submit">
+                            <i class="bi bi-send-fill me-2"></i>Inscrever
+                        </button>
+                    </div>
+                    <div class="newsletter-feedback mt-2 small"></div>
+                </form>
+            </div>
+        </div>
+    </div>
+</section>
+
+<%- include('partials/footer') %>

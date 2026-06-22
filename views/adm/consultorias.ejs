@@ -1,0 +1,23 @@
+<%- include('../partials/header') %>
+<div class="dashboard-page">
+    <div class="dashboard-header"><div class="container"><div class="row align-items-center"><div class="col dashboard-welcome"><h4><i class="bi bi-calendar-check text-gold me-2"></i>Consultorias Solicitadas</h4></div><div class="col-auto"><a href="/admin/dashboard" class="btn btn-glass btn-sm rounded-pill"><i class="bi bi-arrow-left me-1"></i>Voltar</a></div></div></div></div>
+    <div class="container py-4"><div class="card-premium p-4" data-aos="fade-up"><div class="table-responsive">
+        <table class="table table-premium mb-0"><thead><tr><th>Nome</th><th>E-mail</th><th>Tipo</th><th>Data</th><th>Status</th><th>Ações</th></tr></thead>
+            <tbody><% consultorias.forEach(function(c) { %>
+                <tr class="bg-white text-dark">
+                    <td><strong><%= c.nome %></strong></td><td><%= c.email %></td><td><%= c.tipo_consulta || '—' %></td><td><small><%= c.criado_em %></small></td>
+                    <td><select class="form-select form-select-sm consultoria-status bg-white text-dark" data-id="<%= c.id %>" style="width:auto;display:inline-block;">
+                        <option value="Pendente" <%= c.status === 'Pendente' ? 'selected' : '' %>>Pendente</option>
+                        <option value="Agendado" <%= c.status === 'Agendado' ? 'selected' : '' %>>Agendado</option>
+                        <option value="Concluído" <%= c.status === 'Concluído' ? 'selected' : '' %>>Concluído</option>
+                        <option value="Cancelado" <%= c.status === 'Cancelado' ? 'selected' : '' %>>Cancelado</option>
+                    </select></td>
+                    <td><div class="d-flex gap-1">
+                        <a href="mailto:<%= c.email %>" class="btn btn-sm btn-glass" title="Responder"><i class="bi bi-reply"></i></a>
+                        <form action="/admin/consultorias/excluir/<%= c.id %>" method="POST" data-confirm="Excluir?" style="display:inline"><button type="submit" class="btn btn-sm btn-glass" style="color:var(--accent)"><i class="bi bi-trash"></i></button></form>
+                    </div></td>
+                </tr><% }) %>
+            </tbody></table>
+    </div></div></div>
+</div>
+<%- include('../partials/footer') %>
