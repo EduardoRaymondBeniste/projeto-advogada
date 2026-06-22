@@ -19,8 +19,8 @@ const pool = new Pool({
 app.use(express.urlencoded({ extended: true }));
 app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
-app.set('view engine', 'ejs');
-
+// Substitua a linha atual por esta:
+app.set('views', path.resolve(__dirname, 'views'));
 app.use(session({ secret: 'segredo', resave: false, saveUninitialized: false }));
 app.use(flash());
 
